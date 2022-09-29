@@ -25,52 +25,57 @@ const MailPage = () => {
 
   const isLoggedIn = !!name;
 
+  const fetchMessages = () =>
+    axios
+      .get(`https://itransition-task5-server.herokuapp.com/api/get/${name}`)
+      .then((data) => {
+        if (!data.data) {
+          return;
+        }
+
+        const messagesLength = messages.length;
+        console.log(messages, messages.length, data.data.length);
+
+        if (messagesLength !== 0 && messagesLength < data.data.length) {
+          const newMessage = data.data[0];
+          Swal.fire({
+            title: "You have a new message",
+            html: `<div>${newMessage.subject}</div><div>${newMessage.message}</div`,
+            showCancelButton: false,
+            showCloseButton: true,
+            showConfirmButton: false,
+            cancelButtonText: "<span>&#9747;</span>",
+            footer: `<div><div>${newMessage.sender_name}</div><div>${newMessage.date}</div></div`,
+          });
+        }
+
+        setMessages(data.data);
+      });
+
+  const fetchUsers = () =>
+    axios
+      .get(`https://itransition-task5-server.herokuapp.com/api/users`)
+      .then((data) => {
+        if (data.data) {
+          const newUsers = data.data.map((user) => ({
+            value: user.name,
+          }));
+          setUsers(newUsers);
+        }
+      });
+
   useEffect(() => {
     if (!isLoggedIn) {
       navigate("/");
       return;
     }
 
-    const fetchMessages = () =>
-      axios
-        .get(`https://itransition-task5-server.herokuapp.com/api/get/${name}`)
-        .then((data) => {
-          if (!data.data) {
-            return;
-          }
-          if (messages.length !== 0 && messages.length !== data.data.length) {
-            const newMessage = data.data[data.data.length - 1];
-            Swal.fire({
-              title: "You have a new message",
-              html: `<div>${newMessage.subject}</div><div>${newMessage.message}</div`,
-              showCancelButton: false,
-              showCloseButton: true,
-              showConfirmButton: false,
-              cancelButtonText: "<span>&#9747;</span>",
-              footer: `<div><div>${message.sender_name}</div><div>${message.date}</div></div`,
-            });
-          }
-          setMessages(data.data);
-        });
-
-    const fetchUsers = () =>
-      axios
-        .get(`https://itransition-task5-server.herokuapp.com/api/users`)
-        .then((data) => {
-          if (data.data) {
-            const newUsers = data.data.map((user) => ({
-              value: user.name,
-            }));
-            setUsers(newUsers);
-          }
-        });
-
     fetchUsers();
     fetchMessages();
 
     setInterval(() => {
       fetchMessages();
-    }, 25000);
+    }, 10000);
 
     setInterval(() => {
       fetchUsers();

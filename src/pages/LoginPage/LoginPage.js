@@ -19,10 +19,9 @@ const LoginPage = () => {
       .post("https://itransition-task5-server.herokuapp.com/api/login", {
         name: name,
       })
-      .then((response) => {
-        console.log("response: ", response);
+      .then(() => {
+        navigate("/mail");
       });
-    navigate("/mail");
   };
 
   return (
