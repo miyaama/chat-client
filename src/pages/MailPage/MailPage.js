@@ -70,7 +70,7 @@ const MailPage = () => {
 
     setInterval(() => {
       fetchMessages();
-    }, 15000);
+    }, 25000);
 
     setInterval(() => {
       fetchUsers();

@@ -22,7 +22,7 @@ const LoginPage = () => {
       .then((response) => {
         console.log("response: ", response);
       });
-    navigate("/mail");
+    // navigate("/mail");
   };
 
   return (
