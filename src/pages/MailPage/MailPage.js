@@ -34,7 +34,6 @@ const MailPage = () => {
         }
 
         const messagesLength = messages.length;
-        console.log(messages, messages.length, data.data.length);
 
         if (messagesLength !== 0 && messagesLength < data.data.length) {
           const newMessage = data.data[0];
