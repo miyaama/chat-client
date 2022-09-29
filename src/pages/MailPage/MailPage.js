@@ -130,8 +130,8 @@ const MailPage = () => {
             width: 350,
           }}
         >
-          <Button onClick={logOut}>Log out</Button>
           <Title level={5}>User name: {name}</Title>
+          <Button onClick={logOut}>Log out</Button>
           <div>
             <Title level={4}>Messages</Title>
             {messages.map((message) => (
