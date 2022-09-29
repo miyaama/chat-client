@@ -126,13 +126,13 @@ const MailPage = () => {
   return (
     <div className="mail-container">
       <div className="left-container">
-        <Button onClick={logOut}>Log out</Button>
-        <Title level={5}>User name: {name}</Title>
         <Card
           style={{
             width: 350,
           }}
         >
+          <Button onClick={logOut}>Log out</Button>
+          <Title level={5}>User name: {name}</Title>
           <div>
             <Title level={4}>Messages</Title>
             {messages.map((message) => (
