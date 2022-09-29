@@ -1,0 +1,17 @@
+.login-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.login-form {
+  width: 300px;
+  padding: auto;
+}
+
+.login-form-button {
+  width: 100%;
+}
+
