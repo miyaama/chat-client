@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { Button, Form, Input, Typography, Card, AutoComplete } from "antd";
 import axios from "axios";
@@ -79,6 +79,7 @@ const MailPage = () => {
     return () => {
       clearInterval(fetchMessages);
     };
+    // eslint-disable-next-line
   }, []);
 
   const logOut = () => {
